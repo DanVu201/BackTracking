@@ -19,8 +19,11 @@ public class KnapsackTL {
         int[] weights = {12, 4, 3, 2, 1};
         int[] values = {4, 10, 2, 2, 1};
         int max = 15;
+        long startTime = System.currentTimeMillis();
         double Max_Values = Knapsack(max, values, weights);
+        long endTime = System.currentTimeMillis();
         System.out.println("Tong so gia tri co the chua: " + Max_Values);
+        System.out.println("Time: "+ (endTime - startTime));
     }
 
     public static double Knapsack(int max, int[] V, int[] W) {
