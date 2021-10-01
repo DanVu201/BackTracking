@@ -18,7 +18,7 @@ class Khoi {
         return cost;
     }
 }
-public class Knapsack {
+public class KnapsackQL {
     private static List<Khoi> Bag;
     private static int max = 20;
     private static double costMax = 0;
@@ -62,10 +62,10 @@ public class Knapsack {
     public static void main(String[] args) {
         int weightBag = 20;
         init();
-        long timeStart = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         Try(weightBag,0,0,new LinkedList<Double>());
-        long timeEnd = System.currentTimeMillis();
-        System.out.println("Time : " + (timeEnd - timeStart));
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time : " + (endTime - startTime));
         System.out.print(listMax.toString());
         System.out.println(" Cost Max: " + costMax);
 
