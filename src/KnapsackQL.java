@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-class Khoi {
+class Item {
     double weight;
     double cost;
 
-    public Khoi(double w, double c) {
+    public Item(double w, double c) {
         this.weight = w;
         this.cost = c;
     }
@@ -19,18 +19,18 @@ class Khoi {
     }
 }
 public class KnapsackQL {
-    private static List<Khoi> Bag;
-    private static int max = 20;
+    private static List<Item> Bag;
+    private static int max = 15;
     private static double costMax = 0;
     private static LinkedList<Double> listMax = new LinkedList<>();
 
     private static void init() {
         Bag = new ArrayList<>();
-        Bag.add(new Khoi(12, 4));
-        Bag.add(new Khoi(4, 10));
-        Bag.add(new Khoi(3, 2));
-        Bag.add(new Khoi(2, 2));
-        Bag.add(new Khoi(1, 1));
+        Bag.add(new Item(12, 4));
+        Bag.add(new Item(4, 10));
+        Bag.add(new Item(3, 2));
+        Bag.add(new Item(2, 2));
+        Bag.add(new Item(1, 1));
     }
 
     public static void Try(double weightBag, double costBag, int index, LinkedList<Double> list) {
@@ -52,7 +52,7 @@ public class KnapsackQL {
             if(weightBag >= weight) {
                 list.add(Bag.get(i).getWeight());
                 costBag += Bag.get(i).getCost();
-                Try(weightBag - weight ,costBag, i,list );
+                Try(weightBag - weight , costBag, i,list );
                 costBag -= Bag.get(i).getCost();
                 list.removeLast();
             }
@@ -60,7 +60,7 @@ public class KnapsackQL {
     }
 
     public static void main(String[] args) {
-        int weightBag = 20;
+        int weightBag = 15;
         init();
         long startTime = System.currentTimeMillis();
         Try(weightBag,0,0,new LinkedList<Double>());
@@ -68,7 +68,5 @@ public class KnapsackQL {
         System.out.println("Time : " + (endTime - startTime));
         System.out.print(listMax.toString());
         System.out.println(" Cost Max: " + costMax);
-
-
     }
 }

@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class ChangeMoney {
-    static int[] deno = {2, 20, 50};
-    static int n = deno.length;
+public class ChangeMoneyTL {
+    static int[] moneys = {2, 20, 50};
+    static int n = moneys.length;
 
-    static void findMin(int V) {
+    static void Try(int money) {
         List<Integer> ans = new ArrayList<>();
 
         for (int i = n - 1; i >= 0; i--) {
-            while (V >= deno[i]) {
-                V -= deno[i];
-                ans.add(deno[i]);
+            while (money >= moneys[i]) {
+                money -= moneys[i];
+                ans.add(moneys[i]);
             }
         }
 
@@ -21,10 +21,10 @@ class ChangeMoney {
     }
 
     public static void main(String[] args) {
-        int n = 60;
-        System.out.print("Following is minimal number of change for " + n + ": ");
+        int money = 60;
+        System.out.print(money + " = ");
         long startTime = System.currentTimeMillis();
-        findMin(n);
+        Try(money);
         long endTime = System.currentTimeMillis();
         System.out.println("\nTime: " + (endTime - startTime));
     }

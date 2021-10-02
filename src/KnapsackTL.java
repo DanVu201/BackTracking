@@ -3,18 +3,6 @@ import java.util.Comparator;
 
 public class KnapsackTL {
 
-    static class Item {
-        double W, V, I;
-        Double r; // Double class khong phai double.
-
-        public Item(int weight, int value, int index) {
-            this.W = weight;
-            this.V = value;
-            this.I = index;
-            r = (double) value / (double) weight;
-        }
-    }
-
     public static void main(String[] args) {
         int[] weights = {12, 4, 3, 2, 1};
         int[] values = {4, 10, 2, 2, 1};
@@ -23,7 +11,7 @@ public class KnapsackTL {
         double Max_Values = Knapsack(max, values, weights);
         long endTime = System.currentTimeMillis();
         System.out.println("Tong so gia tri co the chua: " + Max_Values);
-        System.out.println("Time: "+ (endTime - startTime));
+        System.out.println("Time: " + (endTime - startTime));
     }
 
     public static double Knapsack(int max, int[] V, int[] W) {
@@ -31,7 +19,7 @@ public class KnapsackTL {
         Item[] items = new Item[V.length];
 
         for (int i = 0; i < V.length; i++) {
-            items[i] = new Item(W[i], V[i], i);
+            items[i] = new Item(W[i], V[i]);
         }
 
         Arrays.sort(items, new Comparator<Item>() {
@@ -53,5 +41,16 @@ public class KnapsackTL {
             i++;
         }
         return tong_gt;
+    }
+
+    static class Item {
+        double W, V, I;
+        Double r; // Double class khong phai double.
+
+        public Item(int weight, int value) {
+            this.W = weight;
+            this.V = value;
+            r = (double) value / (double) weight;
+        }
     }
 }

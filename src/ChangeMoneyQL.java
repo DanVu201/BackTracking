@@ -2,38 +2,29 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Print all the Combinations of Change for a given Amount
- */
-class CoinChange {
+public class ChangeMoneyQL {
 
-    private static List<Integer> coins;
+    private static List<Integer> moneys;
     private static int count = 0;
     private static List<Integer> listBest = new ArrayList<>();
-    private static int numberCoinMin = 100000;
-
-    /**
-     * Initialising the Coing Denominations
-     */
+    private static int numberMoneyMin = 100000;
+    
     private static void init() {
-        coins = new ArrayList<>();
-        coins.add(2);
-        coins.add(20);
-        coins.add(50);
+        moneys = new ArrayList<>();
+        moneys.add(10);
+        moneys.add(20);
+        moneys.add(50);
     }
-
-    /**
-     * Prints all comninations of the coin change
-     */
-    public static void Try(int amount, int numberCoin, int index, LinkedList<Integer> list) {
+    
+    public static void Try(int amount, int numberMoney, int index, LinkedList<Integer> list) {
 
         if (amount == 0) {
             count++;
-            numberCoin = list.size();
+            numberMoney = list.size();
 //            System.out.print(list.toString());
-//            System.out.println(" Number of coin: " + numberCoin);
-            if(numberCoinMin > numberCoin) {
-                numberCoinMin = numberCoin;
+//            System.out.println(" Number of money: " + numberMoney);
+            if(numberMoneyMin > numberMoney) {
+                numberMoneyMin = numberMoney;
                 listBest = (LinkedList<Integer>) list.clone();
             }
             return;
@@ -42,24 +33,24 @@ class CoinChange {
         if (amount < 0)
             return;
 
-        for (int i = index; i < coins.size(); i++) {
-            int coin = coins.get(i);
-            if (amount >= coin) {
-                list.add(coin);
-                Try(amount - coin,numberCoin, i, list);
+        for (int i = index; i < moneys.size(); i++) {
+            int money = moneys.get(i);
+            if (amount >= money) {
+                list.add(money);
+                Try(amount - money,numberMoney, i, list);
                 list.removeLast();
             }
         }
     }
 
     public static void main(String[] args) {
-        int amount = 60;
+        int amount = 100;
         init();
         long startTime = System.currentTimeMillis();
         Try(amount,0, 0, new LinkedList<Integer>());
         long endTime = System.currentTimeMillis();
         System.out.println("Time: " + (endTime - startTime));
         System.out.print("List best: " + listBest.toString());
-        System.out.println(" Number of coin min: " + numberCoinMin);
+        System.out.println(" Number of money min: " + numberMoneyMin);
     }
 }
